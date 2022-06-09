@@ -2,13 +2,12 @@ const express = require ('express')
 const mongoose= require ('mongoose')
 //const MongoClient = require('mongodb').MongoClient;
  const morgan =  require ('morgan')
- 
  const bodyParser =  require ('body-parser') 
-const EmployeeRoute= require ('./routes/employee')
+ const EmployeeRoute= require ('./routes/employee')
  const Employee = require('./models/Employee')
  const UserRoute= require ('./routes/user')
  const User = require('./models/User')
-const res = require('express/lib/response')
+ const res = require('express/lib/response')
  mongoose.connect ('mongodb://localhost:27017/cruds',{useNewUrlParser: true , useUnifiedTopology: true})
  const db = mongoose.connection 
  db.on ( 'error' , (err) => { 
@@ -24,11 +23,11 @@ const res = require('express/lib/response')
  app.use ( bodyParser.urlencoded ( { extended : true } ))
  app.use( bodyParser.json())
  
- app.listen(4954,() =>{
-     console.log (`server is running on port 6966`)
+ app.listen(1744,() =>{
+     console.log (`server is running on port 1744`)
  })
 // module.exports={
-//   find:async(req,res)=>{
+//   find:async(req,res)=>{ss
 //     try{
 //       cruds.collection('employee').aggregate([
 //         {
@@ -74,14 +73,16 @@ const res = require('express/lib/response')
     ])
       .then((like) => {
       console.log(like);
-     //res.json(result);      
+     //res.json(result); 
+  //   router.get('/index',EmployeeController.index)   
       })
       .catch((error) => {
       console.log(error);
-       //res.json(error);
+      // res.json(error);
+       
       });
 
 
  app.use('/api/User',UserRoute)
 
- app.use('/api/employee',EmployeeRoute)
+ app.use('/api/Employee',EmployeeRoute)

@@ -120,6 +120,38 @@ const destroy =(req,res,next)=>{
     })
 
 }
+const employee=(req,res,next)=>{
+Employee.aggregate([
+    {
+    $lookup: {
+        from:"users",
+        localField:"id",
+        foreignField: "id",
+    
+     as:"Department_info"
+      },   
+    },
+ 
+    {
+    
+    $unwind:"$Department_info"
+     },
+  ])
+
+  .then(response=> {
+    res.json({
+        response
+    })
+})
+.catch(error => {
+res.json({
+message:'An error occurd'
+
+})
+})
+   
+}
+
 module.exports={
-    index, show, store, update, destroy
+    index, show, store, update, destroy,employee
 }
